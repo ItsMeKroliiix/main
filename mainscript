@@ -1,0 +1,71 @@
+if game.PlaceId == 11109756592 then
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source%27)))()
+local Window = OrionLib:MakeWindow({Name = "Crypto - YouTube Simulator Z", HidePremium = false, IntroEnabled = false, SaveConfig = true, ConfigFolder = "CryptoConfig"})
+
+--Values
+_G.autopress = false
+
+--Functions
+function autopress()
+    while _G.autopress == true do
+        game:GetService("VirtualInputManager"):SendKeyEvent(true, 101, false, game)
+        wait(0.00000000000000000000000001)
+    end
+end
+
+function enterelevator()
+    game:GetService("ReplicatedStorage").Remotes.Functions.BST:InvokeServer()
+end
+
+function Openbag()
+    game.ReplicatedStorage.Events.BagClick:Fire()
+end
+
+
+--Tabs
+local Maintab = Window:MakeTab({
+    Name = "Main",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+
+--Toggles
+Maintab:AddToggle({
+    Name = "Auto Press E",
+    Default = false,
+    Callback = function(Value)
+        _G.autopress = Value
+        autopress()
+    end
+})
+
+Maintab:AddToggle({
+    Name = "Test",
+    Default = false,
+    Callback = function(Value)
+
+    end
+})
+
+--Buttons
+Maintab:AddButton({
+    Name = "Give Secret Camera",
+    Callback = function()
+        enterelevator()
+      end
+})
+
+Maintab:AddButton({
+    Name = "Open Inventory",
+    Callback = function()
+        Openbag()
+      end
+})
+
+
+
+
+
+end
+OrionLib:Init()
