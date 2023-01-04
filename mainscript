@@ -1,71 +1,92 @@
 if game.PlaceId == 11109756592 then
-local OrionLib = loadstring(game:HttpGet(("https://raw.githubusercontent.com/shlexware/Orion/main/source")))()
-local Window = OrionLib:MakeWindow({Name = "Crypto - YouTube Simulator Z", HidePremium = false, IntroEnabled = false, SaveConfig = true, ConfigFolder = "CryptoConfig"})
-
---Values
-_G.autopress = false
-
---Functions
-function autopress()
-    while _G.autopress == true do
-        game:GetService("VirtualInputManager"):SendKeyEvent(true, 101, false, game)
-        wait(0.00000000000000000000000001)
+    local OrionLib = loadstring(game:HttpGet(("https://raw.githubusercontent.com/shlexware/Orion/main/source")))()
+    local Window = OrionLib:MakeWindow({Name = "Crypto - YouTube Simulator Z", HidePremium = false, IntroEnabled = false, SaveConfig = true, ConfigFolder = "CryptoConfig"})
+    
+    --Values
+    _G.autopress = false
+    _G.walkspeed = false
+    
+    --Functions
+    function autopress()
+        while _G.autopress == true do
+            game:GetService("VirtualInputManager"):SendKeyEvent(true, 101, false, game)
+            wait(0.00000000000000000000000001)
+        end
     end
-end
-
-function enterelevator()
-    game:GetService("ReplicatedStorage").Remotes.Functions.BST:InvokeServer()
-end
-
-function Openbag()
-    game.ReplicatedStorage.Events.BagClick:Fire()
-end
-
-
---Tabs
-local Maintab = Window:MakeTab({
-    Name = "Main",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
-
---Toggles
-Maintab:AddToggle({
-    Name = "Auto Press E",
-    Default = false,
-    Callback = function(Value)
-        _G.autopress = Value
-        autopress()
+    
+    function enterelevator()
+        game:GetService("ReplicatedStorage").Remotes.Functions.BST:InvokeServer()
     end
-})
-
-Maintab:AddToggle({
-    Name = "Test",
-    Default = false,
-    Callback = function(Value)
-
+    
+    function Openbag()
+        game.ReplicatedStorage.Events.BagClick:Fire()
     end
-})
 
---Buttons
-Maintab:AddButton({
-    Name = "Give Secret Camera",
-    Callback = function()
-        enterelevator()
-      end
-})
+    function chair()
+        game.ReplicatedStorage.Events.UnlockIndichair:Fire()
+    end
 
-Maintab:AddButton({
-    Name = "Open Inventory",
-    Callback = function()
-        Openbag()
-      end
-})
+    function walkspeed()
+        if _G.walkspeed == true then
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 50
+        else
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+        end
+    end
+    
+    
+    --Tabs
+    local Maintab = Window:MakeTab({
+        Name = "Main",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+    
+    
+    --Toggles
+    Maintab:AddToggle({
+        Name = "Auto Press E",
+        Default = false,
+        Callback = function(Value)
+            _G.autopress = Value
+            autopress()
+        end
+    })
+    
+    Maintab:AddToggle({
+        Name = "Fast Walkspeed",
+        Default = false,
+        Callback = function(Value)
+            _G.walkspeed = Value
+            walkspeed()
+        end
+    })
+    
+    --Buttons
+    Maintab:AddButton({
+        Name = "Give Secret Camera",
+        Callback = function()
+            enterelevator()
+          end
+    })
+    
+    Maintab:AddButton({
+        Name = "Open Inventory",
+        Callback = function()
+            Openbag()
+          end
+    })
 
-
-
-
-
-end
-OrionLib:Init()
+    Maintab:AddButton({
+        Name = "Unlock Indichair",
+        Callback = function()
+            chair()
+          end
+    })
+    
+    
+    
+    
+    
+    end
+    OrionLib:Init()
