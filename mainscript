@@ -14,14 +14,26 @@ if game.PlaceId == 11109756592 then
         end
     end
     
-    function enterelevator()
+    function givecamera()
         game:GetService("ReplicatedStorage").Remotes.Functions.BST:InvokeServer()
+    end
+
+    function enterupgrade()
+        game:GetService("ReplicatedStorage").Events["_EnterUpgrades"]:Fire()
+    end
+
+    function enterhome()
+        game:GetService("ReplicatedStorage").Events["_EnterHouse"]:Fire()
+    end
+
+    function enterelevator()
+        game:GetService("ReplicatedStorage").Events["EnterElevator"]:Fire()
     end
     
     function Openbag()
         game.ReplicatedStorage.Events.BagClick:Fire()
     end
-
+    
     function chair()
         game.ReplicatedStorage.Events.UnlockIndichair:Fire()
     end
@@ -48,9 +60,16 @@ if game.PlaceId == 11109756592 then
         Icon = "rbxassetid://4483345998",
         PremiumOnly = false
     })
+
+    local Teleport = Window:MakeTab({
+        Name = "Teleports",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
     
     
-    --Toggles
+-- Maintab START
+
     Maintab:AddToggle({
         Name = "Auto Press E",
         Default = false,
@@ -69,11 +88,10 @@ if game.PlaceId == 11109756592 then
         end
     })
     
-    --Buttons
     Maintab:AddButton({
         Name = "Give Secret Camera",
         Callback = function()
-            enterelevator()
+            givecamera()
           end
     })
     
@@ -90,8 +108,30 @@ if game.PlaceId == 11109756592 then
             chair()
           end
     })
+
+    -- Maintab END
+    -- Teleporttab START
     
-    
+    Teleport:AddButton({
+        Name = "Enter Upgrades",
+        Callback = function()
+            enterupgrade()
+          end
+    })
+
+    Teleport:AddButton({
+        Name = "Enter Home",
+        Callback = function()
+            enterhome()
+          end
+    })
+
+    Teleport:AddButton({
+        Name = "Enter Elevator",
+        Callback = function()
+            enterelevator()
+          end
+    })
     
     
     
