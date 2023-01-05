@@ -28,9 +28,16 @@ if game.PlaceId == 11109756592 then
 
     function walkspeed()
         if _G.walkspeed == true then
-            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 50
-        else
-            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+            while true do
+                if _G.walkspeed == true then
+                    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 50
+                    wait(0.0000000000000000000000000000000000000000000000001) 
+                end
+                if _G.walkspeed == false then
+                    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+                    wait(0.0000000000000000000000000000000000000000000000001) 
+                end  
+            end 
         end
     end
     
