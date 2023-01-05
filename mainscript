@@ -46,7 +46,7 @@ if game.PlaceId == 11109756592 then
                     wait(0.0000000000000000000000000000000000000000000000001) 
                 end
                 if _G.walkspeed == false then
-                    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+                    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 25
                     wait(0.0000000000000000000000000000000000000000000000001) 
                 end  
             end 
