@@ -5,6 +5,10 @@ if game.PlaceId == 11109756592 then
     --Values
     _G.autopress = false
     _G.walkspeed = false
+    _G.camvalue = cameravalue
+    _G.pcvalue = computervalue
+    _G.sdvaluee = sdvalue
+    _G.sdvaluearea = sdarea
     
     --Functions
     function autopress()
@@ -14,6 +18,30 @@ if game.PlaceId == 11109756592 then
         end
     end
     
+    function buycamera()
+        local value = _G.camvalue
+        local args = {
+            [1] = value,
+            [2] = true
+        }
+        
+        game:GetService("ReplicatedStorage").Remotes.Functions.BuyUpgrade:InvokeServer(unpack(args))
+        
+        
+    end
+
+    function buypc()
+        local value = _G.pcvalue
+        local args = {
+            [1] = value,
+            [2] = false
+        }
+        
+        game:GetService("ReplicatedStorage").Remotes.Functions.BuyUpgrade:InvokeServer(unpack(args))
+        
+        
+    end
+
     function givecamera()
         game:GetService("ReplicatedStorage").Remotes.Functions.BST:InvokeServer()
     end
@@ -52,6 +80,18 @@ if game.PlaceId == 11109756592 then
             end 
         end
     end
+
+    function buysd()
+        local args = {
+            [1] = _G.sdvaluee,
+            [2] = _G.sdarea
+        }
+        
+        game:GetService("ReplicatedStorage").Remotes.Functions.BUYSD:InvokeServer(unpack(args))
+        
+        
+        
+    end
     
     
     --Tabs
@@ -63,6 +103,24 @@ if game.PlaceId == 11109756592 then
 
     local Teleport = Window:MakeTab({
         Name = "Teleports",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+
+    local Buycameratab = Window:MakeTab({
+        Name = "Buy Cameras",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+
+    local Buypctab = Window:MakeTab({
+        Name = "Buy PCs",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+
+    local sdtab = Window:MakeTab({
+        Name = "Buy SD",
         Icon = "rbxassetid://4483345998",
         PremiumOnly = false
     })
@@ -132,6 +190,109 @@ if game.PlaceId == 11109756592 then
             enterelevator()
           end
     })
+
+    -- Teleporttab end
+    -- Camera Tab start
+    Buycameratab:AddDropdown({
+        Name = "Select Camera (Starter Area)",
+        Default = 0,
+        Options = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20},
+        Callback = function(cameravalue)
+            _G.camvalue = cameravalue
+        end    
+    })
+
+    Buycameratab:AddDropdown({
+        Name = "Select Camera (Ice Area)",
+        Default = 0,
+        Options = {21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40},
+        Callback = function(cameravalue)
+            _G.camvalue = cameravalue
+        end    
+    })
+
+    Buycameratab:AddDropdown({
+        Name = "Select Camera (Alien Area)",
+        Default = 0,
+        Options = {41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60},
+        Callback = function(cameravalue)
+            _G.camvalue = cameravalue
+        end    
+    })
+    
+    Buycameratab:AddButton({
+        Name = "Buy Camera",
+        Callback = function()
+            buycamera()
+          end
+    })
+    -- Camera Tab End
+    -- PC Tab Start
+    Buypctab:AddDropdown({
+        Name = "Select PC (Starter Area)",
+        Default = 0,
+        Options = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20},
+        Callback = function(computervalue)
+            _G.pcvalue = computervalue
+        end    
+    })
+
+    Buypctab:AddDropdown({
+        Name = "Select PC (Ice Area)",
+        Default = 0,
+        Options = {21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40},
+        Callback = function(computervalue)
+            _G.pcvalue = computervalue
+        end    
+    })
+
+    Buypctab:AddDropdown({
+        Name = "Select PC (Alien Area)",
+        Default = 0,
+        Options = {41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60},
+        Callback = function(computervalue)
+            _G.pcvalue = computervalue
+        end    
+    })
+
+    Buypctab:AddButton({
+        Name = "Buy PC",
+        Callback = function()
+            buypc()
+          end
+    })
+    --Pc Tab End
+
+    --SD Tab Start
+    sdtab:AddDropdown({
+        Name = "Select Area",
+        Default = 1,
+        Options = {1, 2, 3},
+        Callback = function(areavalue)
+            _G.sdarea = areavalue
+        end    
+    })
+
+    sdtab:AddSlider({
+        Name = "Amount Of SD (1 Is 100%)",
+        Min = 0,
+        Max = 1,
+        Default = 0,
+        Color = Color3.fromRGB(255,255,255),
+        Increment = 0.1,
+        ValueName = "sd",
+        Callback = function(sdvalue)
+            _G.sdvaluee = (sdvalue)
+        end    
+    })
+
+    sdtab:AddButton({
+        Name = "Buy SD",
+        Callback = function()
+            buysd()
+          end
+    })
+    --SD Tab End
     
     
     
