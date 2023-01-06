@@ -1,64 +1,139 @@
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Player = game.Players.LocalPlayer
-local Window = OrionLib:MakeWindow({Name = "Crypto - Key", HidePremium = false, IntroEnabled = false, SaveConfig = true, ConfigFolder = "Cryptokey"})
-
-OrionLib:MakeNotification({
-	Name = "Succesfully Logged In!",
-	Content = "You are logged in as "..Player.Name.."",
-	Image = "rbxassetid://4483345998",
-	Time = 5
-})
-
-_G.Key = "MNF"
-_G.KeyInput = "String"
-
-function CorrectKeyNotification()
-    OrionLib:MakeNotification({
-        Name = "Correct Key!",
-        Content = "You have entered the correct key!",
-        Image = "rbxassetid://4483345998",
-        Time = 5
-    })
-end
-
-function InCorrectKeyNotification()
-    OrionLib:MakeNotification({
-        Name = "Incorrect Key!",
-        Content = "You have entered a incorrect key!",
-        Image = "rbxassetid://4483345998",
-        Time = 5
-    })
-end
-
---Key Tab
-
-local Tab = Window:MakeTab({
-	Name = "Tab",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-Tab:AddTextbox({
-	Name = "Enter Key",
-	Default = "",
-	TextDisappear = true,
-	Callback = function(Value)
-		_G.KeyInput = Value
-	end	  
-})
-
-Tab:AddButton({
-    Name = "Check Key",
-    Callback = function()
-        if _G.KeyInput == _G.Key then
-        MakeScriptHub()
-        CorrectKeyNotification()
-        else
-            InCorrectKeyNotification()
+if game.PlaceId == 11109756592 then
+    local OrionLib = loadstring(game:HttpGet(("https://raw.githubusercontent.com/shlexware/Orion/main/source")))()
+    local Window = OrionLib:MakeWindow({Name = "Crypto - YouTube Simulator Z", HidePremium = false, IntroEnabled = True, IntroTime = 7, IntroText = "Crypto - YouTube Simulator Z", SaveConfig = true, ConfigFolder = "CryptoConfig"})
+    
+    --Values
+    _G.autopress = false
+    _G.walkspeed = false
+    
+    --Functions
+    function autopress()
+        while _G.autopress == true do
+            game:GetService("VirtualInputManager"):SendKeyEvent(true, 101, false, game)
+            wait(0.00000000000000000000000001)
         end
     end
-})
+    
+    function givecamera()
+        game:GetService("ReplicatedStorage").Remotes.Functions.BST:InvokeServer()
+    end
 
-function MakeScriptHub()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/ItsMeKroliiix/main/main/mainscript"))()
-end
+    function enterupgrade()
+        game:GetService("ReplicatedStorage").Events["_EnterUpgrades"]:Fire()
+    end
+
+    function enterhome()
+        game:GetService("ReplicatedStorage").Events["_EnterHouse"]:Fire()
+    end
+
+    function enterelevator()
+        game:GetService("ReplicatedStorage").Events["EnterElevator"]:Fire()
+    end
+    
+    function Openbag()
+        game.ReplicatedStorage.Events.BagClick:Fire()
+    end
+    
+    function chair()
+        game.ReplicatedStorage.Events.UnlockIndichair:Fire()
+    end
+
+    function walkspeed()
+        if _G.walkspeed == true then
+            while true do
+                if _G.walkspeed == true then
+                    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 50
+                    wait(0.0000000000000000000000000000000000000000000000001) 
+                end
+                if _G.walkspeed == false then
+                    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 25
+                    wait(0.0000000000000000000000000000000000000000000000001) 
+                end  
+            end 
+        end
+    end
+    
+    
+    --Tabs
+    local Maintab = Window:MakeTab({
+        Name = "Main",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+
+    local Teleport = Window:MakeTab({
+        Name = "Teleports",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+    
+    
+-- Maintab START
+
+    Maintab:AddToggle({
+        Name = "Auto Press E",
+        Default = false,
+        Callback = function(Value)
+            _G.autopress = Value
+            autopress()
+        end
+    })
+    
+    Maintab:AddToggle({
+        Name = "Fast Walkspeed",
+        Default = false,
+        Callback = function(Value)
+            _G.walkspeed = Value
+            walkspeed()
+        end
+    })
+    
+    Maintab:AddButton({
+        Name = "Give Secret Camera",
+        Callback = function()
+            givecamera()
+          end
+    })
+    
+    Maintab:AddButton({
+        Name = "Open Inventory",
+        Callback = function()
+            Openbag()
+          end
+    })
+
+    Maintab:AddButton({
+        Name = "Unlock Indichair",
+        Callback = function()
+            chair()
+          end
+    })
+
+    -- Maintab END
+    -- Teleporttab START
+    
+    Teleport:AddButton({
+        Name = "Enter Upgrades",
+        Callback = function()
+            enterupgrade()
+          end
+    })
+
+    Teleport:AddButton({
+        Name = "Enter Home",
+        Callback = function()
+            enterhome()
+          end
+    })
+
+    Teleport:AddButton({
+        Name = "Enter Elevator",
+        Callback = function()
+            enterelevator()
+          end
+    })
+    
+    
+    
+    end
+    OrionLib:Init()
