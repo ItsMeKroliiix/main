@@ -1,6 +1,6 @@
 if game.PlaceId == 11109756592 then
     local OrionLib = loadstring(game:HttpGet(("https://raw.githubusercontent.com/shlexware/Orion/main/source")))()
-    local Window = OrionLib:MakeWindow({Name = "Crypto - YouTube Simulator Z", HidePremium = false, IntroEnabled = True, IntroTime = 7, IntroText = "Crypto - YouTube Simulator X", SaveConfig = true, ConfigFolder = "CryptoConfig"})
+    local Window = OrionLib:MakeWindow({Name = "Crypto - YouTube Simulator Z", HidePremium = false, IntroEnabled = True, IntroTime = 7, IntroText = "Crypto - YouTube Simulator Z", SaveConfig = true, ConfigFolder = "CryptoConfig"})
     
     --Values
     _G.autopress = false
