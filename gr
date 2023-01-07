@@ -17,18 +17,6 @@ if game.PlaceId == 11109756592 then
             wait(0.00000000000000000000000001)
         end
     end
-    
-    function buycamera()
-        local value = _G.camvalue
-        local args = {
-            [1] = value,
-            [2] = true
-        }
-        
-        game:GetService("ReplicatedStorage").Remotes.Functions.BuyUpgrade:InvokeServer(unpack(args))
-        
-        
-    end
 
     function buypc()
         local value = _G.pcvalue
@@ -52,6 +40,30 @@ if game.PlaceId == 11109756592 then
 
     function enterhome()
         game:GetService("ReplicatedStorage").Events["_EnterHouse"]:Fire()
+    end
+
+    function rebirth3()
+        local args = {
+            [1] = 3
+        }
+        
+        game:GetService("ReplicatedStorage").Remotes.Functions.Rebirth:InvokeServer(unpack(args))
+    end
+
+    function rebirth2()
+        local args = {
+            [1] = 2
+        }
+        
+        game:GetService("ReplicatedStorage").Remotes.Functions.Rebirth:InvokeServer(unpack(args))
+    end
+
+    function rebirth2()
+        local args = {
+            [1] = 1
+        }
+        
+        game:GetService("ReplicatedStorage").Remotes.Functions.Rebirth:InvokeServer(unpack(args))
     end
 
     function enterelevator()
@@ -131,8 +143,8 @@ if game.PlaceId == 11109756592 then
     Maintab:AddToggle({
         Name = "Auto Press E",
         Default = false,
-        Callback = function(Value)
-            _G.autopress = Value
+        Callback = function(autocvalue)
+            _G.autopress = autocvalue
             autopress()
         end
     })
@@ -144,6 +156,27 @@ if game.PlaceId == 11109756592 then
             _G.walkspeed = Value
             walkspeed()
         end
+    })
+
+    Maintab:AddButton({
+        Name = "Rebirth (Standard)",
+        Callback = function()
+            rebirth1()
+          end
+    })
+
+    Maintab:AddButton({
+        Name = "Rebirth (Ice)",
+        Callback = function()
+            rebirth2()
+          end
+    })
+
+    Maintab:AddButton({
+        Name = "Rebirth (Alien)",
+        Callback = function()
+            rebirth3()
+          end
     })
     
     Maintab:AddButton({
